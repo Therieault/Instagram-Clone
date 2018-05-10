@@ -1,0 +1,28 @@
+<% include ./partials/header %>
+<div class="ui main text container segment">
+  <div class="ui huge header"> View Image</div>
+  <div class="">
+    <h2><%=image.user_id%></h2>
+  </div>
+  <div class="">
+      <img src="<%=image.src%>">
+  </div>
+  <div class="">
+    <span> <%=image.tag_id %></span>
+  </div>
+  <div class="">
+    <form action="/image/<%=image.id%>/edit" method="GET">
+      <button class="ui yellow basic button"> Edit Post</button>
+    </form>
+  </div>
+  <div class="">
+    <form action="/image/<%=image.id%>?_method=DELETE" method="post">
+      <button class="ui red basic button" >Delete</button>
+
+    </form>
+  </div>
+</div>
+
+
+
+<% include ./partials/footer %>

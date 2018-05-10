@@ -13,12 +13,27 @@ module.exports =function(passport) {
     }
   };
 
+  router.get('/signup', function(req,res) {
+    res.render('signup.ejs');
+  });
+
   router.post('/signup', passport.authenticate('local-signup'), function(req, res) {
-    res.json({ user: req.user})
+    res.json({ user: req.user});
+    res.redirect('/user');
+  });
+
+  router.get('/login', function(req, res) {
+    res.render('login.ejs');
   });
 
   router.post('/login', passport.authenticate('local-login'), function(req, res) {
     res.json({user: req.user})
+    .then(res.redirect('/user'));
+  });
+
+  router.get('/', async (req, res) => {
+    const users = await User.findAll();
+    res.send(users);
   });
 
   router.get('/:id', async (req,res) => {

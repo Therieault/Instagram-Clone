@@ -21,28 +21,34 @@ router.get('/', async (req, res) => {
 
 router.get('/:id', async (req, res) => {
   const image = await Image.findById(req.params.id);
-  res.send(image);
+  res.render('show_image.ejs', {image: image});
 });
 
-router.post('/', (req, res) => {
+
+router.post('/new', (req, res) => {
   Image.create(getBodyParams(req))
   .then((image) => {
     res.send(image);
   });
 });
 
+router.get('/:id/edit', async (req, res) => {
+  const image = await Image.findById(req.params.id);
+  res.render('edit_image.ejs', {image:image});
+});
+
 router.put('/:id', async (req, res) => {
   const image = await Image.findById(req.params.id);
   await image.update(getBodyParams(req));
-  res.send(image);
+  res.redirect('/:id');
 });
 
 router.delete('/:id', (req, res) => {
   Image.findById(req.params.id)
   .then(function(image) {
     image.destroy();
-    console.log('image destroyed');
-  });
+    res.redirect('/');
+ });
 });
 
 module.exports = router;

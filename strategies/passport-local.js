@@ -2,7 +2,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var User = require('../models/index').User;
 var bcrypt = require('bcrypt');
 
-function processSignupCallback(req, email, password, done) {
+function processSignupCallback(req, username, email, password) {
     User.findOne({
             where: {
                 'email': email
@@ -52,13 +52,15 @@ module.exports = function (passport) {
     });
 
     passport.use('local-signup', new LocalStrategy({
-        usernameField: 'email',
+        usernameField: 'username',
+        emailField: 'email',
         passwordField: 'password',
         passReqToCallback: true
     }, processSignupCallback)); // <<-- more on this to come
 
     passport.use('local-login', new LocalStrategy({
-        usernameField : 'email',
+        usernameField : 'username',
+        emailField: 'email',
         passwordField : 'password',
     }, processLoginCallback));
 };

@@ -1,0 +1,18 @@
+<% include ./partials/header %>
+<div class="ui main text container segment">
+  <div class="ui huge header"> Post a new image</div>
+  <form class = "ui form" action="/image/new" method="POST">
+    <div class="field">
+      <label>Image</label>
+      <input type="text" name="src" placeholder="image source">
+    </div>
+    <div class="field">
+      <label>Tags</label>
+      <input type="text" name="tag_id" placeholder="tag ids">
+    </div>
+    <input class="ui teal basic button" type="Submit">
+  </form>
+</div>
+
+
+<% include ./partials/footer %>

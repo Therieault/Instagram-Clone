@@ -1,0 +1,21 @@
+<% include ./partials/header %>
+<div class="ui main text container segment">
+  <div class="ui huge header"> Create New User</div>
+  <form class = "ui form" action="/user/signup" method="POST">
+    <div class="field">
+      <label>Username</label>
+      <input type="text" name="username" placeholder="Username">
+    </div>
+    <div class="field">
+      <label>Email</label>
+      <input type="text" name="email" placeholder="email">
+    </div>
+    <div class="field">
+      <label>Password</label>
+      <input type="text" name="password" placeholder="password">
+    </div>
+    <input class="ui teal basic button" type="Submit">
+  </form>
+</div>
+
+<% include ./partials/footer %>
